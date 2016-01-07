@@ -52,6 +52,14 @@ class IO::Path::Mode:ver<0.0.1>:auth<github:jonathanstowe> {
         $!mode.base(8).Str;
     }
 
+    method Int() {
+        $!mode;
+    }
+
+    method Numeric() {
+        self.Int;
+    }
+
     method file-type() returns FileType {
         my $ft = $!mode +& S_IFMT;
         return FileType($ft);
