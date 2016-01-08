@@ -14,6 +14,8 @@ say $mode.set-user-id ?? 'setuid' !! 'not setuid';
 
 say $mode.user.executable ?? 'executable' !! 'not executable';
 
+say $mode.file-type == IO::Path::Mode::File ?? 'file' !! 'something other than a normal file';
+
 ...
 
 
@@ -63,7 +65,7 @@ Other install mechanisms may be become available in the future.
 
 I welcome suggestions, patches and bug reports at:
 
-   https://github.com/jonathanstowe/RPi-Device-SMBus
+   https://github.com/jonathanstowe/IO-Path-Mode
 
 I'd be particularly interested in suggestions relating to making
 the mode mutable and adding a multi candidate for 'chmod' that
