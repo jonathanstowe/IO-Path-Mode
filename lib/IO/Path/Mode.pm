@@ -1,4 +1,4 @@
-use v6;
+use v6.c;
 
 # Abandon all hope etc;
 use MONKEY;
@@ -25,6 +25,18 @@ say $mode.file-type == IO::Path::Mode::File ?? 'plain file' !! 'something else';
 
 ...
 
+
+=end code
+
+Or part of "ls -al" :
+
+=begin code
+
+use IO::Path::Mode; 
+
+for ".".IO.dir -> $f { 
+    say $f.mode.Str, "   ", $f.Str; 
+}
 
 =end code
 
@@ -74,6 +86,13 @@ That is to say it can be coerced to an Int.
 
 This returns the mode as an C<Int> it may be useful if a smart match
 against a numeric value is required.
+
+=head2 method Str
+
+    method Str()
+
+This returns the file mode as a string representing the file permissions
+as described by POSIX C<ls>.
 
 =head2 method file-type
 
@@ -159,7 +178,7 @@ the same manner as C<user>.
 =end pod
 
 
-class IO::Path::Mode:ver<0.0.1>:auth<github:jonathanstowe> {
+class IO::Path::Mode:ver<0.0.2>:auth<github:jonathanstowe> {
 
     my constant S_IFMT  = 0o170000;
 
@@ -273,6 +292,9 @@ class IO::Path::Mode:ver<0.0.1>:auth<github:jonathanstowe> {
             }
             when FIFO {
                 'p'
+            }
+            default {
+                ' '
             }
         }
     }
