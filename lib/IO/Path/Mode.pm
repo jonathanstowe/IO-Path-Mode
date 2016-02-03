@@ -193,6 +193,11 @@ class IO::Path::Mode:ver<0.0.1>:auth<github:jonathanstowe> {
         method read() returns Bool {
             Bool(self.Int +& Read.Int);
         }
+        method bits() {
+             self.read ?? 'r' !! '-' ,
+             self.write ?? 'w' !! '-',
+             self.execute ?? 'x' !! '-' ;
+        }
     }
 
     has Int $.mode;
@@ -244,6 +249,66 @@ class IO::Path::Mode:ver<0.0.1>:auth<github:jonathanstowe> {
     method other() returns Permissions {
         my Int $perms = ($!mode +& S_IRWXO);
         return $perms but Permissions;
+    }
+
+    method type-char() {
+        given self.file-type() {
+            when Socket {
+                's'
+            }
+            when SymbolicLink {
+                'l'
+            }
+            when File {
+                '-'
+            }
+            when Block {
+                'b'
+            }
+            when Directory {
+                'd'
+            }
+            when Character {
+                'c'
+            }
+            when FIFO {
+                'p'
+            }
+        }
+    }
+
+    method user-bits() {
+        my @bits = self.user.bits;
+        if self.set-user-id {
+            @bits[2] = self.user.executable ?? 's' !! 'S'
+        }
+        @bits;
+    }
+    method group-bits() {
+        my @bits = self.group.bits;
+        if self.set-group-id {
+            @bits[2] = self.group.executable ?? 's' !! 'S'
+        }
+        @bits;
+    }
+    method other-bits() {
+        my @bits = self.other.bits;
+        if self.file-type == Directory && self.sticky {
+            @bits[2] = self.other.executable ?? 'T' !! 't'
+        }
+        @bits;
+    }
+
+    method bits() {
+        my @bits = self.type-char;
+        @bits.append: self.user-bits.flat;
+        @bits.append: self.group-bits.flat;
+        @bits.append: self.other-bits.flat;
+        @bits.flat;
+    }
+
+    method Str() returns Str {
+        self.bits.join('');
     }
 }
 
