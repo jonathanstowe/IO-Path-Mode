@@ -315,8 +315,8 @@ class IO::Path::Mode:ver<0.0.2>:auth<github:jonathanstowe> {
     }
     method other-bits() {
         my @bits = self.other.bits;
-        if self.file-type == Directory && self.sticky {
-            @bits[2] = self.other.execute ?? 'T' !! 't'
+        if self.sticky {
+            @bits[2] = self.other.execute ?? 't' !! 'T'
         }
         @bits;
     }
