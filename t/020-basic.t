@@ -26,6 +26,25 @@ my @tests = {
                 },
             },
             {
+                mode => 0o4400,
+                string  => '-r-S------',
+                permissions => {
+                    user    =>  {
+                        read    =>  True,
+                    },
+                },
+            },
+            {
+                mode => 0o4500,
+                string  => '-r-s------',
+                permissions => {
+                    user    =>  {
+                        read    =>  True,
+                        execute =>  True,
+                    },
+                },
+            },
+            {
                 mode => 0o500,
                 string  => '-r-x------',
                 permissions => {
@@ -65,6 +84,31 @@ my @tests = {
                     },
                     group   =>  {
                         read    => True,
+                    }
+                },
+            },
+            {
+                mode => 0o2440,
+                string => '-r--r-S---',
+                permissions => {
+                    user    =>  {
+                        read    =>  True,
+                    },
+                    group   =>  {
+                        read    => True,
+                    }
+                },
+            },
+            {
+                mode => 0o2450,
+                string => '-r--r-s---',
+                permissions => {
+                    user    =>  {
+                        read    =>  True,
+                    },
+                    group   =>  {
+                        read    => True,
+                        execute => True,
                     }
                 },
             },
@@ -154,6 +198,39 @@ my @tests = {
                     },
                     other   =>  {
                         read    =>  True,
+                    },
+                },
+            },
+            {
+                mode => 0o1644,
+                string => '-rw-r--r-T',
+                permissions => {
+                    user    =>  {
+                        read    =>  True,
+                        write   =>  True,
+                    },
+                    group   =>  {
+                        read    => True,
+                    },
+                    other   =>  {
+                        read    =>  True,
+                    },
+                },
+            },
+            {
+                mode => 0o1645,
+                string => '-rw-r--r-t',
+                permissions => {
+                    user    =>  {
+                        read    =>  True,
+                        write   =>  True,
+                    },
+                    group   =>  {
+                        read    => True,
+                    },
+                    other   =>  {
+                        read    =>  True,
+                        execute =>  True,
                     },
                 },
             },
