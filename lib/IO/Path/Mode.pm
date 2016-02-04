@@ -19,7 +19,7 @@ my $mode = "some-file".IO.mode;
 
 say $mode.set-user-id ?? 'setuid' !! 'not setuid';
 
-say $mode.user.executable ?? 'executable' !! 'not executable';
+say $mode.user.execute ?? 'executable' !! 'not executable';
 
 say $mode.file-type == IO::Path::Mode::File ?? 'plain file' !! 'something else';
 
@@ -302,21 +302,21 @@ class IO::Path::Mode:ver<0.0.2>:auth<github:jonathanstowe> {
     method user-bits() {
         my @bits = self.user.bits;
         if self.set-user-id {
-            @bits[2] = self.user.executable ?? 's' !! 'S'
+            @bits[2] = self.user.execute ?? 's' !! 'S'
         }
         @bits;
     }
     method group-bits() {
         my @bits = self.group.bits;
         if self.set-group-id {
-            @bits[2] = self.group.executable ?? 's' !! 'S'
+            @bits[2] = self.group.execute ?? 's' !! 'S'
         }
         @bits;
     }
     method other-bits() {
         my @bits = self.other.bits;
         if self.file-type == Directory && self.sticky {
-            @bits[2] = self.other.executable ?? 'T' !! 't'
+            @bits[2] = self.other.execute ?? 'T' !! 't'
         }
         @bits;
     }
