@@ -224,7 +224,7 @@ class IO::Path::Mode:ver<0.0.3>:auth<github:jonathanstowe> {
         self.new(file => $path.Str);
     }
     multi method new(Str:D :$file) {
-        my Int $mode = nqp::p6box_i(nqp::stat(nqp::unbox_s($file), nqp::const::STAT_PLATFORM_MODE));
+        my Int $mode = nqp::p6box_i(nqp::lstat(nqp::unbox_s($file), nqp::const::STAT_PLATFORM_MODE));
         self.new(:$mode);
     }
 
