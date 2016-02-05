@@ -392,6 +392,19 @@ for @tests -> $test {
     }, "file with " ~ $test<mode>.base(8) ~ " permissions";
 }
 
+if !$*DISTRO.is-win {
+    my $link-file = $test-dir.parent.child('test-link');
+
+    run('ln', '-s', $test-dir.Str, $link-file.Str, :out, :err);
+
+    ok $link-file.mode.file-type ~~ IO::Path::Mode::SymbolicLink, "symbolic link is a SymbolicLink";
+
+    LEAVE {
+        $link-file.unlink
+    }
+
+}
+
 
 END {
     $test-dir.rmdir;
