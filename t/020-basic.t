@@ -394,8 +394,7 @@ for @tests -> $test {
 
 if !$*DISTRO.is-win {
     my $link-file = $test-dir.parent.child('test-link');
-
-    run('ln', '-s', $test-dir.Str, $link-file.Str, :out, :err);
+    $link-file.symlink($test-dir.Str);
 
     ok $link-file.mode.file-type ~~ IO::Path::Mode::SymbolicLink, "symbolic link is a SymbolicLink";
 
