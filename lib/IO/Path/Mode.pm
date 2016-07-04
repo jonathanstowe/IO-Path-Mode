@@ -1,7 +1,6 @@
 use v6.c;
 
-# Abandon all hope etc;
-use MONKEY;
+use nqp;
 
 =begin pod
 
@@ -334,10 +333,24 @@ class IO::Path::Mode:ver<0.0.4>:auth<github:jonathanstowe> {
     }
 }
 
-augment class IO::Path {
-    method mode() returns IO::Path::Mode {
-        return IO::Path::Mode.new(path => self);
+# This can theoretically deal with a rakudo that has .mode or doesn't
+# but not well tested against the latter case
+sub EXPORT()
+{
+    my $old-method = IO::Path.^lookup('mode');
+
+    if $old-method.defined {
+        $old-method.wrap(method () {
+            IO::Path::Mode.new(path => self);
+        });
     }
+    else {
+        IO::Path.^add_method('mode', method () {
+            IO::Path::Mode.new(path => self);
+        });
+    }
+
+    %();
 }
 
 # vim: expandtab shiftwidth=4 ft=perl6
