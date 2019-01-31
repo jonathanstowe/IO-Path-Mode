@@ -207,13 +207,13 @@ class IO::Path::Mode:ver<0.0.6>:auth<github:jonathanstowe> {
     enum Perms ( Execute => 0o00001, Write => 0o00002, Read => 0o00004);
 
     role Permissions {
-        method execute() returns Bool {
+        method execute( --> Bool ) {
             Bool(self.Int +& Execute.Int);
         }
-        method write() returns Bool {
+        method write( --> Bool ) {
             Bool(self.Int +& Write.Int);
         }
-        method read() returns Bool {
+        method read( --> Bool ) {
             Bool(self.Int +& Read.Int);
         }
         method bits() {
@@ -224,57 +224,57 @@ class IO::Path::Mode:ver<0.0.6>:auth<github:jonathanstowe> {
     }
 
     has Int $.mode;
-    multi method new(IO::Path:D :$path) {
+    multi method new(IO::Path:D :$path --> IO::Path::Mode ) {
         self.new(file => $path.Str);
     }
-    multi method new(Str:D :$file) {
+    multi method new(Str:D :$file --> IO::Path::Mode ) {
         my Int $mode = nqp::p6box_i(nqp::lstat(nqp::unbox_s($file), nqp::const::STAT_PLATFORM_MODE));
         self.new(:$mode);
     }
 
-    method gist() {
+    method gist( --> Str ) {
         $!mode.base(8).Str;
     }
 
-    method Int() {
+    method Int( --> Int ) {
         $!mode;
     }
 
-    method Numeric() {
+    method Numeric( --> Numeric ) {
         self.Int;
     }
 
-    method file-type() returns FileType {
+    method file-type( --> FileType ) {
         my $ft = $!mode +& S_IFMT;
-        return FileType($ft);
+        FileType($ft);
     }
 
-    method set-user-id() returns Bool {
-        return Bool($!mode +& S_ISUID);
+    method set-user-id( --> Bool ) {
+        Bool($!mode +& S_ISUID);
     }
 
-    method set-group-id() returns Bool {
-        return Bool($!mode +& S_ISGID);
+    method set-group-id( --> Bool ) {
+        Bool($!mode +& S_ISGID);
     }
 
-    method sticky() returns Bool {
-        return Bool($!mode +& S_ISVTX);
+    method sticky( --> Bool ) {
+        Bool($!mode +& S_ISVTX);
     }
 
-    method user() returns Permissions {
+    method user( --> Permissions ) {
         my Int $perms = ($!mode +& S_IRWXU) +> 6;
-        return $perms but Permissions;
+        $perms but Permissions;
     }
-    method group() returns Permissions {
+    method group( --> Permissions ) {
         my Int $perms = ($!mode +& S_IRWXG) +> 3;
-        return $perms but Permissions;
+        $perms but Permissions;
     }
-    method other() returns Permissions {
+    method other( --> Permissions ) {
         my Int $perms = ($!mode +& S_IRWXO);
-        return $perms but Permissions;
+        $perms but Permissions;
     }
 
-    method type-char() {
+    method type-char( --> Str ) {
         given self.file-type() {
             when Socket {
                 's'
@@ -333,7 +333,7 @@ class IO::Path::Mode:ver<0.0.6>:auth<github:jonathanstowe> {
         @bits.flat;
     }
 
-    method Str() returns Str {
+    method Str( --> Str ) {
         self.bits.join('');
     }
 }
