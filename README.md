@@ -58,9 +58,7 @@ install this with *zef* :
 
 ## Support
 
-I welcome suggestions, patches and bug reports at:
-
-https://github.com/jonathanstowe/IO-Path-Mode/issues
+I welcome suggestions, patches and bug reports at https://github.com/jonathanstowe/IO-Path-Mode/issues
 
 I'd be particularly interested in suggestions relating to making
 the mode mutable and adding a multi candidate for 'chmod' that
@@ -72,4 +70,4 @@ This is free software.
 
 Please see the [LICENCE](LICENCE) file in the distribution
 
-© Jonathan Stowe 2016, 2017
+© Jonathan Stowe 2016 - 2019

@@ -182,7 +182,7 @@ the same manner as C<user>.
 =end pod
 
 
-class IO::Path::Mode:ver<0.0.6>:auth<github:jonathanstowe> {
+class IO::Path::Mode:ver<0.0.7>:auth<github:jonathanstowe>:api<1.0> {
 
     my constant S_IFMT  = 0o170000;
 
