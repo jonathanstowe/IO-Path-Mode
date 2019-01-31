@@ -6,7 +6,7 @@
     "source": "git://github.com/jonathanstowe/IO-Path-Mode.git",
     "bugtracker": "https://github.com/jonathanstowe/IO-Path-Mode/issues"
   },
-  "perl": "6.c",
+  "perl": "6.*",
   "resources": [
     
   ],

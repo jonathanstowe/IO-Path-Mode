@@ -1,4 +1,4 @@
-use v6.c;
+use v6;
 
 use nqp;
 
@@ -31,10 +31,10 @@ Or part of "ls -al" :
 
 =begin code
 
-use IO::Path::Mode; 
+use IO::Path::Mode;
 
-for ".".IO.dir -> $f { 
-    say $f.mode.Str, "   ", $f.Str; 
+for ".".IO.dir -> $f {
+    say $f.mode.Str, "   ", $f.Str;
 }
 
 =end code
@@ -43,7 +43,7 @@ for ".".IO.dir -> $f {
 
 This augments the type L<IO::Path> to provide a C<mode> method that allows
 you to get at the file permissions (or mode.)  It follows the POSIX model pf
-user, group and other permissions and consequently may not make a meaningful 
+user, group and other permissions and consequently may not make a meaningful
 result on e.g. Windows (although the underlying calls appear to return something
 approximating the correct answer.)
 
@@ -61,7 +61,7 @@ documented below are those of the L<IO::Path::Mode>.
 
 This is mostly provided as some relief for not having the functionality directly
 exposed in Rakudo and as a discussion board for the best way of implementing the
-functionality going forward. 
+functionality going forward.
 
 =head1 METHODS
 
@@ -174,7 +174,7 @@ same manner as C<user>.
 
 =head2 method other
 
-    method other() returns Permissions 
+    method other() returns Permissions
 
 This provides the permissions of all other users to the file in
 the same manner as C<user>.
@@ -196,9 +196,9 @@ class IO::Path::Mode:ver<0.0.6>:auth<github:jonathanstowe> {
     my constant S_IRWXO = 0o000007; # other perms
 
 
-    enum FileType ( Socket          => 0o140000, 
-                    SymbolicLink    => 0o120000, 
-                    File            => 0o100000, 
+    enum FileType ( Socket          => 0o140000,
+                    SymbolicLink    => 0o120000,
+                    File            => 0o100000,
                     Block           => 0o060000,
                     Directory       => 0o040000,
                     Character       => 0o020000,
