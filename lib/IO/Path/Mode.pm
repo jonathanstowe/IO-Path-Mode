@@ -6,7 +6,7 @@ use nqp;
 
 =head1 NAME
 
-IO::Path::Mode - Augment Perl 6's IO::Path with a .mode() method to get the file mode
+IO::Path::Mode - Augment Raku's IO::Path with a .mode() method to get the file mode
 
 =head1 SYNOPSIS
 
@@ -182,7 +182,7 @@ the same manner as C<user>.
 =end pod
 
 
-class IO::Path::Mode:ver<0.0.7>:auth<github:jonathanstowe>:api<1.0> {
+class IO::Path::Mode:ver<0.0.8>:auth<github:jonathanstowe>:api<1.0> {
 
     my constant S_IFMT  = 0o170000;
 
@@ -358,4 +358,4 @@ sub EXPORT()
     %();
 }
 
-# vim: expandtab shiftwidth=4 ft=perl6
+# vim: expandtab shiftwidth=4 ft=raku

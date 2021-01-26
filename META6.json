@@ -1,6 +1,6 @@
 {
   "name": "IO::Path::Mode",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "auth": "github:jonathanstowe",
   "api": "1.0",
   "description": "Augment IO::Path with a .mode() method to get the file mode",
@@ -11,6 +11,7 @@
     "bugtracker": "https://github.com/jonathanstowe/IO-Path-Mode/issues"
   },
   "perl": "6.*",
+  "raku": "6.*",
   "resources": [ ],
   "build-depends": [ ],
   "depends": [ ],
@@ -30,5 +31,5 @@
   "authors": [
     "Jonathan Stowe <jns+git@gellyfish.co.uk>"
   ],
-  "meta-version": "0"
+  "meta-version": "1"
 }

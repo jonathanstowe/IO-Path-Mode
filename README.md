@@ -1,10 +1,13 @@
 # IO::Path::Mode
 
-Augment Perl 6's IO::Path with a .mode() method to get the file mode
+Augment Raku's IO::Path with a .mode() method to get the file mode
+
+![Build Status](https://github.com/jonathanstowe/IO-Path-Mode/workflows/CI/badge.svg)
+
 
 ## Synopsis
 
-```perl6
+```raku
 
 use IO::Path::Mode;
 
@@ -44,8 +47,7 @@ of implementing the functionality going forward.
 
 ## Installation
 
-Assuming you have a working Rakudo Perl 6 installation you should be able to
-install this with *zef* :
+Assuming you have a working Rakudo installation you should be able to install this with *zef* :
 
     # From the source directory
    
@@ -70,4 +72,4 @@ This is free software.
 
 Please see the [LICENCE](LICENCE) file in the distribution
 
-© Jonathan Stowe 2016 - 2019
+© Jonathan Stowe 2016 - 2021
