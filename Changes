@@ -1,3 +1,5 @@
+v0.0.9	Sun  7 Aug 09:46:50 BST 2022
+	* Upload to zef repository
 v0.0.8		Mon 25 Jan 19:17:48 GMT 2021
 	* Spot of renaming and move to GH actions for CI
 v0.0.7      Thu 31 Jan 09:48:37 GMT 2019
@@ -14,3 +16,4 @@ v0.0.2		Wed Feb 3 12:53:10 2016 +0000
 	* Stringify like POSIX
 v0.0.1		Fri Jan 8 00:12:11 2016 +0000 
 	* Revised initial release
+
