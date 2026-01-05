@@ -46,7 +46,7 @@
               "purpose": null,
               "children": [
                 {
-                  "name": "Mode.pm",
+                  "name": "Mode.rakumod",
                   "type": "file"
                 }
               ],

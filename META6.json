@@ -9,7 +9,7 @@
   "api": "1.0",
   "description": "Augment IO::Path with a .mode() method to get the file mode",
   "provides": {
-    "IO::Path::Mode": "lib/IO/Path/Mode.pm"
+    "IO::Path::Mode": "lib/IO/Path/Mode.rakumod"
   },
   "build-depends": [
   ],
@@ -33,5 +33,5 @@
   "test-depends": [
     "Test"
   ],
-  "version": "0.0.9"
+  "version": "0.1.0"
 }
